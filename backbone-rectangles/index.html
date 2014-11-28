@@ -1,6 +1,5 @@
 <html>
 <head>
-  <title></title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js">
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js">
@@ -10,17 +9,20 @@
 </head>
 <body>
 
-<svg width="1000" height="1000"></svg>
+  <svg width="1000" height="1000"></svg>
 
 <script>
   var drawing = [
     {id: 1, x1: 20, y1: 20, x2: 100, y2: 100, color: '#ff0000'},
     {id: 2, x1: 420, y1: 220, x2: 500, y2: 400, color: '#00ff00'}
   ];
+
   var Rectangle = Backbone.Model.extend({});
+
   var Rectangles = Backbone.Collection.extend({
     model: Rectangle
   });
+
   var rectangles = new Rectangles(drawing);
 
   var Scene = Backbone.View.extend({
@@ -41,9 +43,10 @@
   })
 
   var scene;
- $(document).ready(function() {
-   var scene = new Scene({el: $('svg'), collection: rectangles });
- });
+  $(document).ready(function() {
+    scene = new Scene({el: $('svg'), collection: rectangles });
+    scene.render();
+  });
 </script>
 
 </body>
