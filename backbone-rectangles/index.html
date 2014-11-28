@@ -13,8 +13,8 @@
 
 <script>
   var drawing = [
-    {id: 1, x1: 20, y1: 20, x2: 100, y2: 100, color: '#ff0000'},
-    {id: 2, x1: 420, y1: 220, x2: 500, y2: 400, color: '#00ff00'}
+    {id: 1, x1: 20, y1: 20, x2: 100, y2: 100, color: 'maroon'},
+    {id: 2, x1: 420, y1: 100, x2: 500, y2: 400, color: '#00ff00'}
   ];
 
   var Rectangle = Backbone.Model.extend({});
@@ -33,14 +33,35 @@
           rect.setAttribute('x', model.get('x1'));
           rect.setAttribute('y', model.get('y1'));
           rect.setAttribute('width',  '200');
-          rect.setAttribute('height',  '400');
+          rect.setAttribute('height',  '260');
           rect.setAttribute('style', 'fill:' + model.get('color') + ';stroke:pink');
           rect.id = model.get('id');
           el.append(rect);
       });
       return el;
+    },
+    events: {
+      'click rect': 'handleClick'
+    },
+    handleClick: function(e){
+      var id = $(e.currentTarget).attr('id');
+      var rect = this.collection.get(id);
+      rect.set('color', getRandomColour());
+    },
+    initialize: function(){
+      this.listenTo(this.collection,
+        'change:color', this.render);
     }
   })
+
+  function getRandomColour() {
+      var letters = '0123456789ABCDEF'.split('');
+      var color = '#';
+      for (var i = 0; i < 6; i++ ) {
+          color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+  }
 
   var scene;
   $(document).ready(function() {
