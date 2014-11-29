@@ -114,7 +114,7 @@
         console.log("hello");
       },
       initialize: function(){
-        this.model.on('change', this.render, this);
+         this.listenTo(this.collection, 'change', this.render);
       },
       checkWorks: function(){
         console.log("the circle view works");
