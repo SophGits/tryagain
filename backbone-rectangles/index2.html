@@ -90,8 +90,8 @@
         var randomRect = Math.floor(Math.random()*(max -1)+1);
         console.log(randomRect);
         var selectedRect = rectangles.get(randomRect);
-        selectedRect.set('color', 'black');
-        selectedRect.circle = new Circle({name: 'pink-circle', cx: 20, cy: 30, r: 50, color: "lightyellow", rectangle: this});
+        selectedRect.set('color', 'purple');
+        selectedRect.circle = new Circle({name: 'yellow-circle', cx: 20, cy: 30, r: 50, color: "lightyellow", rectangle: this});
       }
      });
 
@@ -106,7 +106,7 @@
           bubble.setAttribute('cx', model.get('cx'));
           bubble.setAttribute('cy', model.get('cy'));
           bubble.setAttribute('r', 50);
-          bubble.setAttribute('style', 'fill: pink; stroke:pink');
+          bubble.setAttribute('style', 'fill:' + model.get('color') + '; stroke:pink');
           bubble.id = model.get('id');
           el.append(bubble);
         });
