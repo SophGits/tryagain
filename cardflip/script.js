@@ -24,6 +24,8 @@ $(document).ready(function(){
     $('#deck').html("");
     // shuffle cards
     deck = shuffle(deck);
+    // duplicate deck
+    deck = deck.concat(deck);
     // create deck
     $(deck).each(function(){
       $('#deck').append('<div class="container"><div class="card"><div class="front">Front</div><div class="back"><img src="images/'+this+'"/></div></div></div>')
