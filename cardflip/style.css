@@ -1,10 +1,15 @@
-section{z-index: -1;}
+section{
+  width: 780px;
+  display: block;
+  margin: 0 auto;
+}
 .container{
-  width: 150px;
-  height: 250px;
+  width: 120px;
+  height: 180px;
   position: relative;
   perspective: 800px;
   display: inline-block;
+  margin: 5px;
 }
 .card{
   width: 100%;
