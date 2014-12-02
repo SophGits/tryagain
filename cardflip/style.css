@@ -27,7 +27,7 @@ section{
   height: 100%;
   backface-visibility: hidden;
 }
-.card:hover, .card.flipped{
+.card:hover, .card.flipped, .card.matched{
   transform: rotateY(180deg);
   cursor: pointer;
 }

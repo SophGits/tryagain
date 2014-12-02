@@ -25,7 +25,7 @@ $(document).ready(function(){
     // shuffle cards
     deck = shuffle(deck);
     // duplicate deck
-    deck = deck.concat(deck);
+    deck = shuffle(deck).concat(deck);
     // create deck
     $(deck).each(function(){
       $('#deck').append('<div class="container"><div class="card"><div class="front">Front</div><div class="back"><img src="images/'+this+'"/></div></div></div>')
@@ -37,7 +37,16 @@ $(document).ready(function(){
     if($('.flipped').length >= 2){
       $('.card').removeClass('flipped')
       $(this).addClass('flipped');
-    } else {
+    } else if($('.flipped').length === 1){
+        var flippedCard = $('.flipped')[0]["innerHTML"];
+        var img = $(this, 'div img')[0]["innerHTML"];
+        if(img === flippedCard){
+          $(this).addClass('matched');
+          $('.flipped').removeClass('flipped').addClass('matched');
+        } else {
+          $(this).addClass('flipped');
+        }
+      } else {
       $(this).addClass('flipped');
     }
   });
