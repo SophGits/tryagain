@@ -12,10 +12,18 @@ $(document).ready(function(){
        });
      }
   });
+  // shuffle function
+  function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+  };
+
   // start new game
   $('#create-deck').click(function(){
     //clear deck
     $('#deck').html("");
+    // shuffle cards
+    deck = shuffle(deck);
     // create deck
     $(deck).each(function(){
       $('#deck').append('<div class="container"><div class="card"><div class="front">Front</div><div class="back"><img src="images/'+this+'"/></div></div></div>')
