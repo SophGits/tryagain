@@ -1,3 +1,4 @@
+section{z-index: -1;}
 .container{
   width: 150px;
   height: 250px;
@@ -12,6 +13,7 @@
   transform-style: preserve-3d; /* because the container's perspective only applies to immediate children, this allows it to be inherited down the chain */
   transition: transform 0.5s;
   border: 1px solid gray;
+  z-index: 20;
 }
 .card div{
   display: block;
@@ -20,8 +22,9 @@
   height: 100%;
   backface-visibility: hidden;
 }
-.card:hover, #card.flipped{
+.card:hover, .card.flipped{
   transform: rotateY(180deg);
+  cursor: pointer;
 }
 .front{
   background: lightyellow;
@@ -35,5 +38,7 @@
 }
 button{
   display: block;
-  margin: 20px;
+  margin: 30px auto;
+  font-size: 20px;
+  line-height: 60px;
 }
