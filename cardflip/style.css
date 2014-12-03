@@ -39,6 +39,11 @@ p span{color: green;}
   transform-style: preserve-3d; /* because the container's perspective only applies to immediate children, this allows it to be inherited down the chain */
   transition: transform 0.2s;
 }
+.card:hover{
+  -ms-transform: translate(0px,-4px); /* IE 9 */
+  -webkit-transform: translate(0px,-4px); /* Chrome, Safari, Opera */
+  transform: translate(0px,-4px);
+}
 .card div{
   display: block;
   position: absolute;
@@ -66,6 +71,10 @@ p span{color: green;}
   background-size: 80%;
   box-shadow: -0.5px 4px 5px 1px rgba(0, 0, 0, 0.5);
   transform: rotateX(40deg);
+}
+.front:hover{
+  transform: rotateX(42deg);
+  box-shadow: 0px 11px 6px 1px rgba(0, 0, 0, 0.5);
 }
 .back{
   transform: rotateY(180deg); /* To flip the back */
