@@ -1,6 +1,8 @@
 // NB To overcome CORS, run a server with python -m SimpleHTTPServer
 $(document).ready(function(){
+
   var deck = []
+
   // get images
   $.ajax({
     url: 'images/',
@@ -12,7 +14,6 @@ $(document).ready(function(){
      }
   });
 
-
   // shuffle function
   function shuffle(o){ //v1.0
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -22,6 +23,7 @@ $(document).ready(function(){
   // scoring
   var turns = 0;
   var target;
+
   // start new game
   $('#create-deck').click(function(){
     //clear deck
@@ -104,6 +106,10 @@ $(document).ready(function(){
   });
 
 
-  // $('#create-deck').click();
+
 
 });
+
+$(document).ready(function(){
+  setTimeout("$('#create-deck').click();", 100);
+})
