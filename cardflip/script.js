@@ -20,7 +20,7 @@ $(document).ready(function(){
   };
 
   // scoring
-  var score = 0;
+  var turns = 0;
   var target;
   // start new game
   $('#create-deck').click(function(){
@@ -39,11 +39,26 @@ $(document).ready(function(){
     return target;
   });
 
-  function updateScore(num){
-    score+=num;
-    console.log(num);
-    console.log(score);
-    return $('#score p').html(score);
+  function updateTurns(num){
+    turns+=num;
+    return $('#turns p').html(turns);
+  }
+
+  function calculateScore(){
+    var result = parseInt((target/turns)*100);
+    if(result >= 60 && result <= 99){
+      show("Very good");
+    } else if(result === 100){
+      show("Perfect!");
+    } else if(result < 30){
+      show("Poor");
+    } else{
+      show("Good");
+    }
+    function show(message){
+      $('#score p').prepend(result);
+      $('#score p span').append(" (" +message+")");
+    }
   }
 
   // select a card
@@ -55,7 +70,6 @@ $(document).ready(function(){
 
       $('.card').removeClass('flipped')
       $(this).addClass('flipped');
-
       console.log('case1'); // basically never happens
 
     } else if($('.flipped').length === 1) {
@@ -65,26 +79,27 @@ $(document).ready(function(){
 
         if($('.matched').length === ((deck.length)*2) -2){
           $('.card').removeClass('matched').addClass('matched').addClass('complete');
-          updateScore(1);
-          console.log('case2')
+          updateTurns(1);
+          calculateScore();
+          // console.log('case2')
 
         } else if(img === flippedCard) {
           $(this).addClass('matched');
           $('.flipped').removeClass('flipped').addClass('matched');
-          updateScore(1);
-          console.log('case3')
+          updateTurns(1);
+          // console.log('case3')
 
         } else {
           $(this).addClass('flipped')
             setTimeout("($('.flipped').removeClass('flipped'));", 400);
-            updateScore(1);
-            console.log('case4')
+            updateTurns(1);
+            // console.log('case4')
         }
 
       } else {
       $(this).addClass('flipped');
-      updateScore(1);
-      console.log('case5')
+      updateTurns(1);
+      // console.log('case5')
     }
   });
 

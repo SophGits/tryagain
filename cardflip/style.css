@@ -23,7 +23,7 @@ section{
 #score{position: absolute; left: 0; top: 60px; padding-bottom: 10px;}
 
 #target, #target p, #score, #score p, #turns, #turns p{display: inline-block;}
-
+p span{color: green;}
 .container{
   width: 100px;
   height: 150px;
