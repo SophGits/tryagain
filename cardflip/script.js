@@ -67,10 +67,15 @@ $(document).ready(function(){
   }
 
   function endGame(){
-    for(i=0; i < target; i++){
-      var deg = i*0.2*30;
-      $('.card')[i].style.transform = "rotateY(-"+deg+"deg)";
-    }
+    // for(i=0; i < target; i++){
+    //   var deg = i*0.2*30;
+    //   $('.card')[i].style.transform = "rotateY(-"+deg+"deg)";
+    // }
+    //don't forget these browsers:
+    // div.style.webkitTransform = 'rotate('+deg+'deg)';
+    // div.style.mozTransform    = 'rotate('+deg+'deg)';
+    // div.style.msTransform     = 'rotate('+deg+'deg)';
+    // div.style.oTransform      = 'rotate('+deg+'deg)';
   }
 
   // select a card
