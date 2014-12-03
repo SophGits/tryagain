@@ -1,11 +1,11 @@
 section{
-  width: 780px;
+  width: 700px;
   display: block;
   margin: 0 auto;
 }
 .container{
-  width: 120px;
-  height: 180px;
+  width: 100px;
+  height: 150px;
   position: relative;
   perspective: 800px;
   display: inline-block;
@@ -34,14 +34,16 @@ section{
 .card.flipped, .card.matched{
   transform: rotateY(180deg);
 }
-.card.complete{
-  box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+.complete{
+  box-shadow: 0px 0px 15px 5px rgba(107, 195, 44, 0.5);
+  transform: rotateY(180deg);
+  transition: transform 0.8s;
 }
 .front{
-  background: lightyellow;
+  background: url('pattern.jpg');
+  background-size: 80%;
 }
 .back{
-  background: aliceblue;
   transform: rotateY(180deg); /* To flip the back */
 }
 .back img{

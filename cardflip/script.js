@@ -28,7 +28,7 @@ $(document).ready(function(){
     var dblDeck = shuffle(deck).concat(deck);
     // create deck
     $(dblDeck).each(function(){
-      $('#deck').append('<div class="container"><div class="card"><div class="front">Front</div><div class="back"><img src="images/'+this+'"/></div></div></div>')
+      $('#deck').append('<div class="container"><div class="card"><div class="front"></div><div class="back"><img src="images/'+this+'"/></div></div></div>')
     })
   });
   // select a card
