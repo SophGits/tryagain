@@ -58,7 +58,7 @@ $(document).ready(function(){
       show("Good");
     }
     function show(message){
-      $('#score p').prepend(result);
+      $('#score p').prepend(result + "%");
       $('#score p span').append(" (" +message+")");
     }
   }

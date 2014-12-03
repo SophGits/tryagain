@@ -18,8 +18,8 @@ section{
   display: block;
   position: relative;
 }
-#turns{position: absolute; left: 0; top: 0px; padding-bottom: 60px;}
-#target{position: absolute; left: 0; top: 30px; padding-bottom: 60px;}
+#turns{position: absolute; left: 0; top: 0px; padding-bottom: 60px; color:  gray;}
+#target{position: absolute; left: 0; top: 30px; padding-bottom: 60px; color: #cc0033;}
 #score{position: absolute; left: 0; top: 60px; padding-bottom: 10px;}
 
 #target, #target p, #score, #score p, #turns, #turns p{display: inline-block;}
