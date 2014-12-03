@@ -1,6 +1,5 @@
 // NB To overcome CORS, run a server with python -m SimpleHTTPServer
 $(document).ready(function(){
-
   var deck = []
   // get images
   $.ajax({
@@ -12,12 +11,17 @@ $(document).ready(function(){
        });
      }
   });
+
+
   // shuffle function
   function shuffle(o){ //v1.0
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
   };
 
+  // scoring
+  var score = 0;
+  var target;
   // start new game
   $('#create-deck').click(function(){
     //clear deck
@@ -29,8 +33,19 @@ $(document).ready(function(){
     // create deck
     $(dblDeck).each(function(){
       $('#deck').append('<div class="container"><div class="card"><div class="front"></div><div class="back"><img src="images/'+this+'"/></div></div></div>')
-    })
+    });
+    target = deck.length * 2;
+    $('#target p').html(target);
+    return target;
   });
+
+  function updateScore(num){
+    score+=num;
+    console.log(num);
+    console.log(score);
+    return $('#score p').html(score);
+  }
+
   // select a card
   $('section').on("click", ".card", function(e){
 
@@ -41,6 +56,8 @@ $(document).ready(function(){
       $('.card').removeClass('flipped')
       $(this).addClass('flipped');
 
+      console.log('case1'); // basically never happens
+
     } else if($('.flipped').length === 1) {
 
         var flippedCard = $('.flipped')[0]["innerHTML"];
@@ -48,24 +65,30 @@ $(document).ready(function(){
 
         if($('.matched').length === ((deck.length)*2) -2){
           $('.card').removeClass('matched').addClass('matched').addClass('complete');
+          updateScore(1);
+          console.log('case2')
 
         } else if(img === flippedCard) {
           $(this).addClass('matched');
           $('.flipped').removeClass('flipped').addClass('matched');
+          updateScore(1);
+          console.log('case3')
 
         } else {
           $(this).addClass('flipped')
             setTimeout("($('.flipped').removeClass('flipped'));", 400);
+            updateScore(1);
+            console.log('case4')
         }
 
       } else {
       $(this).addClass('flipped');
+      updateScore(1);
+      console.log('case5')
     }
   });
 
+
+  // $('#create-deck').click();
+
 });
-
-
-
-// var one = shuffle([1,2,3,4]).concat([1,2,3,4])
-// >> [1, 3, 4, 2, 1, 2, 3, 4]
