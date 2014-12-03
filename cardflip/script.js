@@ -25,27 +25,38 @@ $(document).ready(function(){
     // shuffle cards
     deck = shuffle(deck);
     // duplicate deck
-    deck = shuffle(deck).concat(deck);
+    var dblDeck = shuffle(deck).concat(deck);
     // create deck
-    $(deck).each(function(){
+    $(dblDeck).each(function(){
       $('#deck').append('<div class="container"><div class="card"><div class="front">Front</div><div class="back"><img src="images/'+this+'"/></div></div></div>')
     })
   });
   // select a card
   $('section').on("click", ".card", function(e){
+
     e.preventDefault();
-    if($('.flipped').length >= 2){
+
+    if($('.flipped').length >= 2) {
+
       $('.card').removeClass('flipped')
       $(this).addClass('flipped');
-    } else if($('.flipped').length === 1){
+
+    } else if($('.flipped').length === 1) {
+
         var flippedCard = $('.flipped')[0]["innerHTML"];
         var img = $(this, 'div img')[0]["innerHTML"];
-        if(img === flippedCard){
+
+        if($('.matched').length === ((deck.length)*2) -2){
+          $('.card').removeClass('matched').addClass('matched').addClass('complete');
+
+        } else if(img === flippedCard) {
           $(this).addClass('matched');
           $('.flipped').removeClass('flipped').addClass('matched');
+
         } else {
           $(this).addClass('flipped');
         }
+
       } else {
       $(this).addClass('flipped');
     }
@@ -57,3 +68,8 @@ $(document).ready(function(){
   })();
 
 });
+
+
+
+// var one = shuffle([1,2,3,4]).concat([1,2,3,4])
+// >> [1, 3, 4, 2, 1, 2, 3, 4]
