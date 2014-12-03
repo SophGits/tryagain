@@ -54,7 +54,8 @@ $(document).ready(function(){
           $('.flipped').removeClass('flipped').addClass('matched');
 
         } else {
-          $(this).addClass('flipped');
+          $(this).addClass('flipped')
+            setTimeout("($('.flipped').removeClass('flipped'));", 400);
         }
 
       } else {
