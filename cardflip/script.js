@@ -28,6 +28,9 @@ $(document).ready(function(){
   $('#create-deck').click(function(){
     //clear deck
     $('#deck').html("");
+    //clear turns
+    turns = 0;
+    updateTurns(0);
     // duplicate and shuffle deck
     var dblDeck = deck.concat(deck);
     // shuffle deck
