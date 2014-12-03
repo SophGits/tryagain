@@ -22,10 +22,10 @@ $(document).ready(function(){
   $('#create-deck').click(function(){
     //clear deck
     $('#deck').html("");
-    // shuffle cards
-    deck = shuffle(deck);
-    // duplicate deck
-    var dblDeck = shuffle(deck).concat(deck);
+    // duplicate and shuffle deck
+    var dblDeck = deck.concat(deck);
+    // shuffle deck
+    dblDeck = shuffle(dblDeck);
     // create deck
     $(dblDeck).each(function(){
       $('#deck').append('<div class="container"><div class="card"><div class="front"></div><div class="back"><img src="images/'+this+'"/></div></div></div>')
@@ -62,11 +62,6 @@ $(document).ready(function(){
       $(this).addClass('flipped');
     }
   });
-
-  // no idea why this won't work
-  (function(){
-    $('#create-deck').trigger('click');
-  })();
 
 });
 
