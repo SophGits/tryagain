@@ -71,7 +71,9 @@ p span{color: green;}
 }
 .back img{
   width: 100%;
+  opacity: 0.9;
 }
+.complete .back img{  opacity: 1;}
 button{
   display: block;
   margin: 30px auto;

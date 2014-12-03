@@ -66,6 +66,13 @@ $(document).ready(function(){
     }
   }
 
+  function endGame(){
+    for(i=0; i < target; i++){
+      var deg = i*0.2*30;
+      $('.card')[i].style.transform = "rotateY(-"+deg+"deg)";
+    }
+  }
+
   // select a card
   $('section').on("click", ".card", function(e){
 
@@ -86,6 +93,7 @@ $(document).ready(function(){
           $('.card').removeClass('matched').addClass('matched').addClass('complete');
           updateTurns(1);
           calculateScore();
+          endGame();
           // console.log('case2')
 
         } else if(img === flippedCard) {
