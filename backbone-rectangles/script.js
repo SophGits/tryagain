@@ -37,11 +37,22 @@ var Circle = Backbone.RelationalModel.extend({
     cy: 30,
     r: 20,
     color: "lightgreen"
+  },
+  getRandomSize: function() {
+    var radius = 0;
+    for (var i = 0; i < 10; i++ ) {
+        radius += Math.floor(Math.random() * 3);
+    }
+    return radius;
   }
 });
 // MODEL COLLECTIONS //////////////////////////////////////
 var Circles = Backbone.Collection.extend({
-  model: Circle
+  model: Circle,
+  create: function(attributes){
+    console.log("hello");
+    this.add(attributes);
+  }
 });
 var circles = new Circles();
 
@@ -84,12 +95,7 @@ var rectangles = new Rectangles(drawing);
     var max = rectangles.length
     var randomRect = Math.floor(Math.random()*(max -1)+1);
     var selectedRect = rectangles.get(randomRect);
-    console.log("Random rectangle: ");
-    console.log(randomRect);
-    console.log("Selected rectangle: ");
-    console.log(selectedRect);
     var rectColour = selectedRect.get('color');
-    // selectedRect.set('color', 'purple');
     var newCircle = new Circle({
       name: 'paired-circle',
       cx: 70,
@@ -98,11 +104,9 @@ var rectangles = new Rectangles(drawing);
       color: rectColour,
       rectangle: selectedRect
     });
-    // console.log("NewCircle: ")
-    // console.log(newCircle); // this s not creating what we want
-    circles.add(newCircle);
+    // circles.add(newCircle);
+    circles.create(newCircle);
     // add circle model instance to the circle collection
-    console.log("should create a new circle");
   }
  });
 // CIRCLE VIEW ////////////////////////////////
@@ -118,7 +122,7 @@ var CircleView = Backbone.View.extend({
     var bubble = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       bubble.setAttribute('cx', model.get('cx'));
       bubble.setAttribute('cy', model.get('cy'));
-      bubble.setAttribute('r', model.get('r'));
+      bubble.setAttribute('r', model.getRandomSize() );
       bubble.setAttribute('style', 'fill:' + model.get('color') + '; stroke:orange');
       bubble.id = model.get('id');
       // bubble.rectangle = model.get('rectangle');
@@ -142,14 +146,3 @@ $(document).ready(function() {
   var circleView = new CircleView({el: $('#place'), collection: circles});
   circleView.render();
 });
-
-
-// RANDOM FUNCTION ////////////////////////////////////////////////
-// function getRandomColor() {
-//     var letters = '0123456789ABCDEF'.split('');
-//     var color = '#';
-//     for (var i = 0; i < 6; i++ ) {
-//         color += letters[Math.floor(Math.random() * 16)];
-//     }
-//     return color;
-// }
