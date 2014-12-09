@@ -49,10 +49,15 @@ var Circle = Backbone.RelationalModel.extend({
 // MODEL COLLECTIONS //////////////////////////////////////
 var Circles = Backbone.Collection.extend({
   model: Circle,
-  create: function(attributes){
-    console.log("hello");
-    this.add(attributes);
-  }
+  create: function(rectColour, selectedRect){
+    var newCircle = new Circle({
+      name: 'paired-circle',
+      color: rectColour,
+      rectangle: selectedRect
+    });
+    this.add(newCircle);
+  },
+
 });
 var circles = new Circles();
 
@@ -96,17 +101,8 @@ var rectangles = new Rectangles(drawing);
     var randomRect = Math.floor(Math.random()*(max -1)+1);
     var selectedRect = rectangles.get(randomRect);
     var rectColour = selectedRect.get('color');
-    var newCircle = new Circle({
-      name: 'paired-circle',
-      cx: 70,
-      cy: 40,
-      r: 30,
-      color: rectColour,
-      rectangle: selectedRect
-    });
-    // circles.add(newCircle);
-    circles.create(newCircle);
-    // add circle model instance to the circle collection
+
+    circles.create(rectColour, selectedRect);
   }
  });
 // CIRCLE VIEW ////////////////////////////////
