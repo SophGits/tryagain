@@ -33,7 +33,7 @@ var Rectangle = Backbone.RelationalModel.extend({
 var Circle = Backbone.RelationalModel.extend({
   urlRoot: '/circle/',
   defaults: {
-    cx: 50,
+    cx: 270,
     cy: 30,
     r: 20,
     color: "lightgreen"
@@ -49,15 +49,21 @@ var Circle = Backbone.RelationalModel.extend({
 // MODEL COLLECTIONS //////////////////////////////////////
 var Circles = Backbone.Collection.extend({
   model: Circle,
-  create: function(rectColour, selectedRect){
-    var newCircle = new Circle({
-      name: 'paired-circle',
-      color: rectColour,
-      rectangle: selectedRect
-    });
+  create: function(selectedRect){
+    // var attributes = this.getRectCoords(selectedRect);
+    var newCircle = new Circle(this.getQualities(selectedRect));
     this.add(newCircle);
+    console.log(newCircle);
   },
-
+  getQualities: function(selectedRect){
+    return{
+      name: 'paired-circle',
+      color: selectedRect.get('color'),
+      rectangle: selectedRect,
+      cx: selectedRect.attributes.x1,
+      cy: selectedRect.attributes.y1
+    }
+  }
 });
 var circles = new Circles();
 
@@ -101,8 +107,7 @@ var rectangles = new Rectangles(drawing);
     var randomRect = Math.floor(Math.random()*(max -1)+1);
     var selectedRect = rectangles.get(randomRect);
     var rectColour = selectedRect.get('color');
-
-    circles.create(rectColour, selectedRect);
+    circles.create(selectedRect);
   }
  });
 // CIRCLE VIEW ////////////////////////////////
@@ -113,8 +118,8 @@ var CircleView = Backbone.View.extend({
   render: function(){
     var el = this.$el;
     this.collection.each(function(model) {
-      console.log("What gets rendered in circle view: ");
-      console.log(model);
+      // console.log("What gets rendered in circle view: ");
+      // console.log(model);
     var bubble = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       bubble.setAttribute('cx', model.get('cx'));
       bubble.setAttribute('cy', model.get('cy'));
@@ -123,22 +128,24 @@ var CircleView = Backbone.View.extend({
       bubble.id = model.get('id');
       // bubble.rectangle = model.get('rectangle');
       el.append(bubble);
+      // console.log("bubble");
+      // console.log(bubble);
     });
     return el;
-    console.log("hello");
   },
   initialize: function(){
      this.listenTo(this.collection, 'change', this.render);
      this.listenTo(this.collection, 'add', this.render);
   },
   checkWorks: function(){
-    console.log("the circle view works");
+    // console.log("the circle view works");
   }
 })
 
 $(document).ready(function() {
   var rectangleView = new RectangleView({el: $('#rectSvg'), collection: rectangles });
   rectangleView.render();
-  var circleView = new CircleView({el: $('#place'), collection: circles});
+  var circleView = new CircleView({el: $('#rectSvg'), collection: circles});
+  // var circleView = new CircleView({el: $('#place'), collection: circles});
   circleView.render();
 });
