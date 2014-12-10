@@ -56,11 +56,16 @@ var Circles = Backbone.Collection.extend({
     console.log(newCircle);
   },
   getQualities: function(selectedRect){
+    var rectX = function(){
+      var diff = (selectedRect.attributes.x2 - selectedRect.attributes.x1);
+      return selectedRect.attributes.x1 + (Math.random() * diff);
+    }
+    var rectY = selectedRect.attributes.y1;
     return{
       name: 'paired-circle',
       color: selectedRect.get('color'),
       rectangle: selectedRect,
-      cx: selectedRect.attributes.x1,
+      cx: rectX(),
       cy: selectedRect.attributes.y1
     }
   }
