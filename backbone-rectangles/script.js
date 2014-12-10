@@ -1,9 +1,9 @@
 
 // OBJECTS ///////////////////////////////////////////////
 var drawing = [
-  {id: 1, x1: 20, y1: 20, x2: 100, y2: 100, color: '#ff0000'},
-  {id: 2, x1: 420, y1: 220, x2: 500, y2: 400, color: '#00ff00'},
-  {id: 3, x1: 120, y1: 220, x2: 500, y2: 400, color: 'blue'}
+  {id: 1, x1: 20, y1: 20, x2: 100, y2: 100, width: 400, height: 100, color: '#ff0000'},
+  {id: 2, x1: 420, y1: 170, x2: 500, y2: 400, width: 100, height: 300, color: '#00ff00'},
+  {id: 3, x1: 120, y1: 220, x2: 500, y2: 400, width: 100, height: 50, color: 'blue'}
 ];
 var bubbles = [
   {id: 1, cx: 40, cy: 30, r: 50, color: "lightyellow"}
@@ -57,8 +57,8 @@ var Circles = Backbone.Collection.extend({
   },
   getQualities: function(selectedRect){
     var rectX = function(){
-      var diff = (selectedRect.attributes.x2 - selectedRect.attributes.x1);
-      return selectedRect.attributes.x1 + (Math.random() * diff);
+      return selectedRect.attributes.x1 + (Math.random() * selectedRect.attributes
+        .width);
     }
     var rectY = selectedRect.attributes.y1;
     return{
@@ -95,8 +95,8 @@ var rectangles = new Rectangles(drawing);
        var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
        rect.setAttribute('x', model.get('x1'));
        rect.setAttribute('y', model.get('y1'));
-       rect.setAttribute('width',  '200');
-       rect.setAttribute('height',  '100');
+       rect.setAttribute('width',  model.get('width'));
+       rect.setAttribute('height', model.get('height'));
        rect.setAttribute('style', 'fill:' + model.get('color') + '; stroke: pink');
        rect.id = model.get('id');
        el.append(rect);
