@@ -1,0 +1,55 @@
+<html>
+<head>
+  <title>Audio test</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <p>Other player</p>
+  <iframe src="https://archive.org/embed/beethovenbeethoven_s9thclip" width="500" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+
+  <p>Doesn't start automatically</p>
+  <audio controls>
+    <source src="http://www.amclassical.com/mp3/amclassical_beethoven_fur_elise.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+  </audio>
+
+  <p>Preload: none</p>
+  <audio src="http://www.amclassical.com/mp3/amclassical_march_from_the_magic_flute.mp3" type="audio/mpeg" controls="true" loop="true" preload="none">
+    Your browser does not support the audio element.
+  </audio>
+  <!-- just putting autoplay within <audio ... > will do - and omitting it doesn't let it autoplay-->
+
+  <p>Preload: auto</p>
+  <audio src="http://www.amclassical.com/mp3/amclassical_moonlight_sonata_movement_1.mp3" controls loop autoplay preload="auto">
+  </audio>
+
+  <p>Fallback</p>
+  <audio controls src="http://www.amclassical.com/mp3/amclassical_moonlight_sonata_movement_2.mp3">
+
+    <object type="application/x-shockwave-flash" data="media/OriginalMusicPlayer.swf" width="225" height="86">
+      <param name="movie" value="media/OriginalMusicPlayer.swf"/>
+      <param name="FlashVars" value="mediaPath=vincent.mp3" />
+    </object>
+  </audio>
+  <!-- In order to support web browser that doesn't understand what <audio> is about, such as IE8 and below, we shall let them enjoy their good old day using <object> tag. -->
+
+  <a href="http://www.site.com/page.html"
+  target="resource window">
+  Open in new tab with no "back"</a>
+
+  <a href="http://www.site.com/page.html" target="_top">
+  Open in new tab with "back" capability</a>
+
+  <p>Player with custom control buttons</p>
+  <audio id="player" src="http://www.amclassical.com/mp3/amclassical_moonlight_sonata_movement_2.mp3"></audio>
+  <div>
+  <button onclick="document.getElementById('player').play()">Play</button>
+  <button onclick="document.getElementById('player').pause()">Pause</button>
+  <button onclick="document.getElementById('player').volume += 0.1">Vol+ </button>
+  <button onclick="document.getElementById('player').volume -= 0.1">Vol- </button>
+  </div>
+
+
+</body>
+</html>
