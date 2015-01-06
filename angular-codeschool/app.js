@@ -1,2 +1,17 @@
-var app = angular.module('store', [ ]);
-// var app = angular.module('store', ['ngRoute']);
+(function(){
+
+  var app = angular.module('store', []);
+
+  app.controller('StoreController', function(){
+    this.product = gem;
+  });
+
+  var gem = {
+    name: 'Dodecahedron',
+    price: 2.95,
+    description: '...',
+  }
+
+  console.log("The function with app in is executing");
+
+})();

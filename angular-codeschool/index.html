@@ -19,7 +19,11 @@
 </head>
 <body>
 
-  <p>{{"hello" + " you"}}</p>
+  <div ng-controller="StoreController">
+    <h1>{{StoreController.product.name}}</h1>
+    <h2>£{{StoreController.gem.price}}</h2>
+    <p>Product Description</p>
+  </div>
 
 </body>
 </html>
