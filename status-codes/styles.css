@@ -5,13 +5,17 @@ section{
 }
 input{
   display: block;
+  width: 95%;
 }
 input, p {
   line-height: 20px;
-  font-size: 16px;
+  font-size: 12px;
   margin: 8px;
 }
-
+span{
+  position: absolute;
+  display: none;
+}
 table{
   text-align: left;
   width: 900px;
@@ -22,27 +26,27 @@ td{
 }
 tr td:first-child{
   /*color: red;*/
-  width: 8%;
+  width: 7%;
 }
 tr th:first-child{
   /*color: red;*/
-  width: 8%;
+  width: 7%;
 }
 
 tr td:nth-child(2){
   /*color: blue;*/
-  width: 20%;
+  width: 30%;
 }
 tr th:nth-child(2){
   /*color: blue;*/
-  width: 20%;
+  width: 30%;
 }
 
 tr td:nth-child(3){
-  /*color: orange;*/
-  width: 72%;
+  color: #fcf;
+  width: 60%;
 }
 tr th:nth-child(3){
-  /*color: orange;*/
-  width: 72%;
+  color: #fcf;
+  width: 60%;
 }

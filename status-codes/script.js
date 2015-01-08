@@ -114,7 +114,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var desc = codes[i].description;
       var expl = codes[i].explanation;
 
-      var codeStr = '<tr><td>'+code+'</td><td>'+desc+'</td><td>'+expl+'</td></tr>';
+      code = "<input value="+code+"></input><span>"+code+"</span>";
+      desc = "<input value="+desc+"></input><span>"+desc+"</span>";
+      var codeStr = "<tr><td>"+code+"</td><td>"+desc+"</td><td>"+expl+"</td></tr>";
       $('table').append(codeStr);
 
 
