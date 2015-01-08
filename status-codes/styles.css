@@ -1,8 +1,3 @@
-section{
-  display: inline-block;
-  float: left;
-  margin: 10px;
-}
 input{
   display: block;
   width: 95%;
@@ -13,8 +8,10 @@ input, p {
   margin: 8px;
 }
 span{
-  position: absolute;
-  display: none;
+  position: relative;
+  top: -30px;
+  right: -16px;
+  /*display: none;*/
 }
 table{
   text-align: left;

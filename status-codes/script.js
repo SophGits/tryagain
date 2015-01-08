@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    {
      code: 202,
      description: 'Accepted',
-     explanation: 'The rquest has been accepted for processing, but the processing has not been completed. The request may eventually be acton upon - but it may not, as it couls be disallowed when processing actually takes place.'
+     explanation: 'The request has been accepted for processing, but the processing has not been completed. The request may eventually be acton upon - but it may not, as it couls be disallowed when processing actually takes place.'
    },
    {
      code: 400,
@@ -84,29 +84,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   ]
 
   var spellout = function(){
-    for(i=0; i<codes.length; i++){
-      var code = codes[i].code;
-      var desc = codes[i].description;
-
-      var right = document.getElementById('right');
-
-      var inputNode = document.createElement('input');
-
-      var text = document.createTextNode(code);
-      inputNode.appendChild(text);
-      inputNode.defaultValue = code;
-      document.getElementById('left').appendChild(inputNode);
-
-      var givenInfo = document.createElement('p');
-      givenInfo.innerHTML = desc;
-
-      right.appendChild(givenInfo);
-    }
-  }
-  spellout();
-
-
-  var spellout2 = function(){
       var codeStrHead = '<tr><th>Code</th><th>Description</th><th>Explanation</th></tr>';
       $('table').append(codeStrHead);
     for(i=0; i<codes.length; i++){
@@ -115,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var expl = codes[i].explanation;
 
       code = "<input value="+code+"></input><span>"+code+"</span>";
-      desc = "<input value="+desc+"></input><span>"+desc+"</span>";
+      desc = "<input value="+"'"+desc+"'"+"></input><span>"+desc+"</span>";
       var codeStr = "<tr><td>"+code+"</td><td>"+desc+"</td><td>"+expl+"</td></tr>";
       $('table').append(codeStr);
 
@@ -123,6 +100,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
   }
-  spellout2();
+  spellout();
+
+  $('input').on('keyup', function(){
+    console.log($(this).val());
+    var outerTd = $(this).closest('td');
+    spanVal = $('span', outerTd)[0].innerHTML;
+
+    $(this).val() === spanVal ? correct():wrong();
+
+  });
+
+  var correct = function(){
+    console.log('correct');
+  }
+  var wrong = function(){
+    console.log('wrong');
+  }
 });
 
