@@ -1,6 +1,48 @@
 section{
   display: inline-block;
+  float: left;
+  margin: 10px;
 }
 input{
   display: block;
+}
+input, p {
+  line-height: 20px;
+  font-size: 16px;
+  margin: 8px;
+}
+
+table{
+  text-align: left;
+  width: 900px;
+  background-color: lightgray;
+}
+td{
+  padding: 10px 0;
+}
+tr td:first-child{
+  /*color: red;*/
+  width: 8%;
+}
+tr th:first-child{
+  /*color: red;*/
+  width: 8%;
+}
+
+tr td:nth-child(2){
+  /*color: blue;*/
+  width: 20%;
+}
+tr th:nth-child(2){
+  /*color: blue;*/
+  width: 20%;
+}
+
+tr td:nth-child(3){
+  /*color: orange;*/
+  width: 72%;
+}
+tr th:nth-child(3){
+  /*color: orange;*/
+  width: 72%;
 }

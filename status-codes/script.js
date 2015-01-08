@@ -87,16 +87,40 @@ document.addEventListener("DOMContentLoaded", function(event) {
     for(i=0; i<codes.length; i++){
       var code = codes[i].code;
       var desc = codes[i].description;
-      var left = document.getElementById('left');
+
       var right = document.getElementById('right');
+
       var inputNode = document.createElement('input');
+
       var text = document.createTextNode(code);
       inputNode.appendChild(text);
-      left.appendChild(inputNode);
-      // left.appendChild('<input>'+code+'</input>');
-      // right.appendChild('<input>'+desc+'</input>');
+      inputNode.defaultValue = code;
+      document.getElementById('left').appendChild(inputNode);
+
+      var givenInfo = document.createElement('p');
+      givenInfo.innerHTML = desc;
+
+      right.appendChild(givenInfo);
     }
   }
   spellout();
+
+
+  var spellout2 = function(){
+      var codeStrHead = '<tr><th>Code</th><th>Description</th><th>Explanation</th></tr>';
+      $('table').append(codeStrHead);
+    for(i=0; i<codes.length; i++){
+      var code = codes[i].code;
+      var desc = codes[i].description;
+      var expl = codes[i].explanation;
+
+      var codeStr = '<tr><td>'+code+'</td><td>'+desc+'</td><td>'+expl+'</td></tr>';
+      $('table').append(codeStr);
+
+
+    }
+
+  }
+  spellout2();
 });
 
