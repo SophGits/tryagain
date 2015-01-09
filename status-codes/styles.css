@@ -1,3 +1,6 @@
+*{
+  outline: 0; /* removes blue focus blur */
+}
 input{
   display: block;
   width: 95%;
@@ -11,7 +14,7 @@ span{
   position: relative;
   top: -30px;
   right: -16px;
-  /*display: none;*/
+  display: none;
 }
 table{
   text-align: left;
@@ -40,10 +43,18 @@ tr th:nth-child(2){
 }
 
 tr td:nth-child(3){
-  color: #fcf;
+  color: #eee;
   width: 60%;
 }
 tr th:nth-child(3){
-  color: #fcf;
+  color: #eee;
   width: 60%;
+}
+
+
+.correct{
+  border: 3px solid lawngreen;
+}
+.wrong{
+  border: 3px solid red;
 }

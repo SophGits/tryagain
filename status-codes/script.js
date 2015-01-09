@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    },
    {
      code: 418,
-     description: 'I\'m a Teapot',
+     description: "I'm a Teapot",
      explanation: '1998 April Fool\'s joke. (Implemented in RFC 2324 Hyper Text Coffee Pot Control Protocol).'
    },
   ]
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var expl = codes[i].explanation;
 
       code = "<input value="+code+"></input><span>"+code+"</span>";
-      desc = "<input value="+"'"+desc+"'"+"></input><span>"+desc+"</span>";
+      desc = "<input value="+'"'+desc+'"' + "></input><span>"+desc+"</span>";
       var codeStr = "<tr><td>"+code+"</td><td>"+desc+"</td><td>"+expl+"</td></tr>";
       $('table').append(codeStr);
 
@@ -102,20 +102,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
   spellout();
 
-  $('input').on('keyup', function(){
-    console.log($(this).val());
-    var outerTd = $(this).closest('td');
-    spanVal = $('span', outerTd)[0].innerHTML;
+  $('input').on('keypress', (function(e){
+    if ( e.which == 13 ) {
+      e.preventDefault();
+      var outerTd = $(this).closest('td');
+      spanVal = $('span', outerTd)[0].innerHTML;
+      $(this).val() === spanVal ? correct(this):wrong(this);
+    } else {
+      return;
+    }
+  }));
 
-    $(this).val() === spanVal ? correct():wrong();
-
-  });
-
-  var correct = function(){
-    console.log('correct');
+  var correct = function(a){
+    // console.log('correct');
+    // console.log(a);
+    $(a).removeClass('correct wrong').addClass('correct');
   }
-  var wrong = function(){
-    console.log('wrong');
+  var wrong = function(a){
+    // console.log('wrong');
+     $(a).removeClass('correct wrong').addClass('wrong');
   }
 });
 
