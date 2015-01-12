@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+  window.app = {};
 
   var codes = [
     {
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    {
      code: 202,
      description: 'Accepted',
-     explanation: 'The request has been accepted for processing, but the processing has not been completed. The request may eventually be acton upon - but it may not, as it couls be disallowed when processing actually takes place.'
+     explanation: 'The request has been accepted for processing, but the processing has not been completed. The request may eventually be acton upon - but it may not, as it could be disallowed when processing actually takes place.'
    },
    {
      code: 400,
@@ -83,24 +84,59 @@ document.addEventListener("DOMContentLoaded", function(event) {
    },
   ]
 
-  var spellout = function(){
+  $('#showAll').on('click', function(){
+    showAll(false, false);
+  });
+  $('#clearCodes').on('click', function(){
+    var codeInputs = $('table tr  td:nth-child(1) input');
+    codeInputs = $.each(codeInputs, function(key, val){
+      return val['value'] = "";
+    })
+  });
+  $('#clearMessages').on('click', function(){
+    var messageInputs = $('table tr  td:nth-child(2) input');
+    messageInputs = $.each(messageInputs, function(key, val){
+      return val['value'] = "";
+    })
+  });
+  $('#clearRandom').on('click', function(){
+    showAll(true, false);
+  });
+
+  var clearRandom = function(info){
+    if(Math.random() > 0.49){
+      return "<input value="+info+"></input><span>"+info+"</span>";
+    } else {
+      return "<input value=''></input><span>"+info+"</span>";
+    };
+  }
+  var showAll = function(codeA, descA){
+    $('table').html(" ");
       var codeStrHead = '<tr><th>Code</th><th>Description</th><th>Explanation</th></tr>';
       $('table').append(codeStrHead);
     for(i=0; i<codes.length; i++){
-      var code = codes[i].code;
-      var desc = codes[i].description;
-      var expl = codes[i].explanation;
+      app.code = codes[i].code;
+      app.desc = codes[i].description;
+      app.expl = codes[i].explanation;
 
-      code = "<input value="+code+"></input><span>"+code+"</span>";
-      desc = "<input value="+'"'+desc+'"' + "></input><span>"+desc+"</span>";
-      var codeStr = "<tr><td>"+code+"</td><td>"+desc+"</td><td>"+expl+"</td></tr>";
-      $('table').append(codeStr);
+        if(codeA != false){
+          var codeString = clearRandom(app.code);
+        } else {
+          var codeString = "<input value="+app.code+"></input><span>"+app.code+"</span>"
+        }
+        if(descA != false){
+          var codeString = clearRandom(app.desc);
+        } else {
+          var descString = "<input value="+'"'+app.desc+'"' + "></input><span>"+app.desc+"</span>";
+        }
 
+      var tableStr = "<tr><td>"+codeString+"</td><td>"+descString+"</td><td><p>"+app.expl+"</p></td></tr>";
 
+      $('table').append(tableStr);
     }
-
   }
-  spellout();
+  showAll(false, false);
+
 
   $('input').on('keypress', (function(e){
     if ( e.which == 13 ) {
