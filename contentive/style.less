@@ -9,9 +9,10 @@ body{
     }
   }
   .inner{
+    .make-row();
     .make-xs-column(12);
-    .make-sm-column(10);
-    .make-sm-column-offset(1);
+    .make-sm-column(11);
+    .make-sm-column-offset(0.5);
     border: 1px dashed gray;
   }
 }
@@ -83,6 +84,7 @@ header{
 }
 
 .introduction{
+  padding: 0;
   .hero{
     .make-sm-column(12);
   }
@@ -104,15 +106,24 @@ header{
 
 .our-features{
   border-top: 1px solid gray;
+  margin-top: 3em;
   .features-hero{
+    // .make-row();
     .make-sm-column(12);
   }
   .features-image, .camera-image{
+    img{
+      width: 90%;
+      max-width: 290px;
+      max-height: 250px;
+    }
+    border: 1px dashed pink;
     .make-sm-column(5);
     .make-md-column(5);
     .make-lg-column(5);
   }
   .features-copy, .camera-copy{
+    border: 1px dashed orange;
     .make-sm-column(7);
     .make-md-column(7);
     .make-lg-column(7);
@@ -120,5 +131,10 @@ header{
   button{
     float: left;
   }
+
+}
+
+
+@media(min-width: @screen-phone){
 
 }
