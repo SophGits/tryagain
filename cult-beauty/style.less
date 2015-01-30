@@ -1,0 +1,74 @@
+// MAIN STYLES _________________________________________
+*, *:before, *:after{
+  box-sizing: border-box;
+}
+
+html{
+  width: 100%;
+}
+
+body{
+  margin: 0 auto;
+  background: aliceblue;
+  width: 980px;
+}
+
+// HEADER _________________________________________
+.hero{
+  img{
+    width: 100%;
+  }
+}
+
+
+// ARTICLE _________________________________________
+article{
+  > section{
+    @media (max-width: 980px) {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    @media (min-width: 981px) {
+      display: inline-block;
+      width: 480px;
+    }
+    float: left;
+    border: 1px dashed red;
+  }
+  .left-column{
+
+  }
+  .right-column{
+   @media (min-width: 981px) {
+      margin-left: 20px;
+    }
+  }
+  img{
+    width: 100px;
+    display: block;
+  }
+}
+
+// FOOTER _________________________________________
+
+footer{
+  clear: both;
+  height: 5em;
+  width: 100%;
+  background: black;
+  display: block;
+}
+
+// GENERAL _________________________________________
+
+button{
+  width: 195px;
+  height: 40px;
+  font-style: 'Helvetica Neue';
+  font-size: 14px;
+  text-transform: uppercase;
+  p{
+    line-height: 39px;
+  }
+}
