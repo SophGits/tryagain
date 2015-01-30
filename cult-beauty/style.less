@@ -18,6 +18,7 @@ body{
   img{
     width: 100%;
   }
+  margin-bottom: 30px;
 }
 
 
@@ -44,9 +45,50 @@ article{
       margin-left: 20px;
     }
   }
-  img{
-    width: 100px;
-    display: block;
+  .product{
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+      &:hover{
+          cursor: pointer;
+        .overlay{
+          bottom: 0;
+        }
+        .overlay.max{
+          display: block;
+          height: 100%;
+          visibility:visible;
+          opacity: 0.8; // same as for other overlays
+          transition-delay:0s;
+        }
+      }
+    img{
+      width: 100%;
+      display: block;
+    }
+    .overlay{
+      // :not(.max)
+      position: absolute;
+      bottom: -34px; //should be line height of product name
+      left: 0;
+      width: 100%;
+      background: white;
+      opacity: 0.8;
+      transition: bottom 0.3s;
+      -moz-transition: bottom 0.3s;
+      -webkit-transition: bottom 0.3s;
+
+      // transition: display 0.3s;
+      // -moz-transition: display 0.3s;
+      // -webkit-transition: display 0.3s;
+      &.max{
+        visibility: hidden;
+        opacity: 0;
+        transition:visibility 0s, opacity 0.5s linear;
+        -moz-transition:visibility 0s, opacity 0.5s linear;
+        -webkit-transition:visibility 0s, opacity 0.5s linear;
+      }
+    }
   }
 }
 
