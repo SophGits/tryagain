@@ -1,3 +1,22 @@
+// FONT _______________________________________________
+@font-face{
+  font-family: 'DubielPlain';
+  src: url('DubielPlain/Dubiel.eot');
+  src: url('DubielPlain/Dubiel.eot?#iefix') format('embedded-opentype'),
+       url('DubielPlain/Dubiel.woff2') format('woff2'),
+       url('DubielPlain/Dubiel.woff') format('woff'),
+       url('DubielPlain/Dubiel.ttf')  format('truetype');
+}
+
+@font-face{
+  font-family: 'DubielItalic';
+  src: url('DubielPlain/DubielItalic.eot');
+  src: url('DubielPlain/DubielItalic.eot?#iefix') format('embedded-opentype'),
+       url('DubielPlain/DubielItalic.woff2') format('woff2'),
+       url('DubielPlain/DubielItalic.woff') format('woff'),
+       url('DubielPlain/DubielItalic.ttf')  format('truetype');
+}
+
 // MAIN STYLES _________________________________________
 *, *:before, *:after{
   box-sizing: border-box;
@@ -9,8 +28,8 @@ html{
 
 body{
   margin: 0 auto;
-  background: aliceblue;
   width: 980px;
+  // font-family: 'DubielItalic';
 }
 
 // HEADER _________________________________________
@@ -69,11 +88,12 @@ article{
     .overlay{
       // :not(.max)
       position: absolute;
-      bottom: -34px; //should be line height of product name
+      bottom: -94px; //should be line height of product name
       left: 0;
       width: 100%;
-      background: white;
-      opacity: 0.8;
+      background: rgba(255,255,255, 0.8);
+      text-align: center;
+      // opacity: 0.8;
       transition: bottom 0.3s;
       -moz-transition: bottom 0.3s;
       -webkit-transition: bottom 0.3s;
@@ -88,6 +108,15 @@ article{
         -moz-transition:visibility 0s, opacity 0.5s linear;
         -webkit-transition:visibility 0s, opacity 0.5s linear;
       }
+    }
+    h1{
+      font-family: 'DubielItalic';
+      text-transform: uppercase;
+    }
+    p{
+      font-family: Helvetica;
+      font-size: 14px;
+      line-height: 19px;
     }
   }
 }
@@ -110,6 +139,10 @@ button{
   font-style: 'Helvetica Neue';
   font-size: 14px;
   text-transform: uppercase;
+  background-color: rgba(255,255,255, 1);
+  opacity: 1;
+  border: 1px solid black;
+  margin-bottom: 20px;
   p{
     line-height: 39px;
   }
